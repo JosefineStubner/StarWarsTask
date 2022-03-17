@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars</title>
+  </head>
+  <body>
+    <h1>Compare Star Wars Characters</h1>
+
+    <div id="chooseCharacterOne">
+      <label for="firstCharacters">Choose character one:</label>
+      <select name="firstCharacter" id="firstCharacter">
+        <option value="1">Luke Skywalker</option>
+        <option value="2">C-3PO</option>
+        <option value="4">Darth Vader</option>
+        <option value="5">Leia Organa</option>
+        <option value="6">Owen Lars</option>
+        <option value="7">Beru Whitesun lars</option>
+        <option value="8">Obi-Wan Kenobi</option>
+        <option value="9">Biggs Darklighter</option>
+      </select>
+    </div>
+
+    <div id="chooseCharacterTwo">
+      <label for="characters">Choose character two:</label>
+      <select name="secondCharacter" id="secondCharacter">
+        <option value="1">Luke Skywalker</option>
+        <option value="2">C-3PO</option>
+        <option value="4">Darth Vader</option>
+        <option value="5">Leia Organa</option>
+        <option value="6">Owen Lars</option>
+        <option value="7">Beru Whitesun lars</option>
+        <option value="8">Obi-Wan Kenobi</option>
+        <option value="9">Biggs Darklighter</option>
+      </select>
+    </div>
+
+    <button id="chooseCharactersBtn">Choose Characters</button>
+
+    <div id="renderCharacterOne">
+    </div>
+
+    <div id="renderCharacterTwo"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
