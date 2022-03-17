@@ -18,28 +18,30 @@ class Character {
   // Vad Karaktär 2:s vikt är - Skriv även ut om Karaktär 2 väger mer/mindre än hen, samt skillnaden i vikt.
   compareWeight(secondaryCharacter) {
     console.log(this.name + " compare weight with " + secondaryCharacter.name);
+
+    const weightDiv = document.getElementById("weightDiv")
+    const weightParagraph = document.createElement("p");
+
     if (this.mass > secondaryCharacter.mass) {
       console.log(this.name + " is heavier than " + secondaryCharacter.name);
-
+      weightParagraph.innerText = "I weigh more than " + secondaryCharacter.name;
+      weightDiv.appendChild(weightParagraph);
     } 
     else {
       console.log(secondaryCharacter.name + " is heavier than " + this.name);
+      weightParagraph.innerText = secondaryCharacter.name + " weighs more than me."
+      weightDiv.appendChild(weightParagraph);
     }
   }
   // Vad Karaktär 2s längd är. - Skriv även ut om Karaktär 2 är längre/kortare än hen, samt skillnaden i längd.
-  compareHeight() {}
+  compareHeight(secondaryCharacter) {}
   // Karaktär 2’s hårfärg. Om det är samma som Karaktär 1, skriv ut detta också.
-  compareHairColor() {}
+  compareHairColor(secondaryCharacter) {}
   // Karaktär 2’s kön. Om det är samma som Karaktär 1, skriv ut detta också.
-  compareGender() {}
+  compareGender(secondaryCharacter) {}
   // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
 }
 
-//   VG-krav 3 - Skapa fyra knappar under varje karaktär
-//När de klickas på, ska karaktären besvara frågor om den andre karaktären.
-// Varje knapp ska köra en metod som definieras i din Character-klass.
-// Frågorna ska besvaras i en textbox under respektive karaktär.
-// T.ex ska du under Karaktär 1 ha knappar där hen besvarar följande frågor om Karaktär 2:
 
 let characterOne;
 let characterTwo;
@@ -75,7 +77,10 @@ const renderCharacters = (characterOne, characterTwo) => {
   const characterOneDiv = document.getElementById("renderCharacterOne");
   const characterTwoDiv = document.getElementById("renderCharacterTwo");
 
+  characterOneDiv.innerHTML = "";
   renderCharacter(characterOne, characterTwo, characterOneDiv);
+
+  characterTwoDiv.innerHTML = "";
   renderCharacter(characterTwo, characterOne, characterTwoDiv);
 };
 
@@ -99,5 +104,17 @@ const renderCharacter = (
     primaryCharacter.compareHeight(secondaryCharacter);
   })
 
-  primaryCharacterDiv.append(p, compareWeightBtn, compareHeightBtn);
+  const compareHairColorBtn = document.createElement("button");
+  compareHairColorBtn.innerText = "What's their hair color?";
+  compareHairColorBtn.addEventListener("click", () => {
+    primaryCharacter.compareHairColor(secondaryCharacter);
+  })
+
+  const compareGenderBtn = document.createElement("button");
+  compareGenderBtn.innerText = "What's their gender?"
+  compareGenderBtn.addEventListener("click", () => {
+    primaryCharacter.compareGender(secondaryCharacter);
+  })
+
+  primaryCharacterDiv.append(p, compareWeightBtn, compareHeightBtn, compareHairColorBtn, compareGenderBtn);
 };
