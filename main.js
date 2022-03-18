@@ -3,34 +3,56 @@
 
 class Character {
   //constructor
-  constructor(name, gender, height, mass, hairColor, pictureUrl) {
+  constructor(name, gender, height, mass, hair_color, imgUrl) {
     this.name = name;
     this.gender = gender;
     this.height = parseInt(height);
     this.mass = parseInt(mass);
-    this.hairColor = hairColor;
-    this.pictureUrl = pictureUrl;
+    this.hair_color = hair_color;
+    this.imgUrl = imgUrl;
   }
 
   //Klassen ska även innehålla metoder för att jämföra karaktärens egna egenskaper med en annan karaktär.
   //methods
 
   // Vad Karaktär 2:s vikt är - Skriv även ut om Karaktär 2 väger mer/mindre än hen, samt skillnaden i vikt.
-  compareWeight(secondaryCharacter) {
-    console.log(this.name + " compare weight with " + secondaryCharacter.name);
-
+  compareWeight(secondaryCharacter, textbox) {
+    textbox.innerText = "";
     if (this.mass > secondaryCharacter.mass) {
       console.log(this.name + " is heavier than " + secondaryCharacter.name);
+      console.log(this.mass - secondaryCharacter.mass);
+      textbox.innerText = "poop";
     } else {
       console.log(secondaryCharacter.name + " is heavier than " + this.name);
+      console.log(secondaryCharacter.mass - this.mass);
+      textbox.innerText = "not poop";
     }
   }
   // Vad Karaktär 2s längd är. - Skriv även ut om Karaktär 2 är längre/kortare än hen, samt skillnaden i längd.
-  compareHeight(secondaryCharacter) {}
+  compareHeight(secondaryCharacter, textbox) {
+    textbox.innerText = "";
+    if (this.height > secondaryCharacter.mass) {
+      console.log(`${this.name} is taller than ${secondaryCharacter.name}.`);
+    } else {
+      console.log(`${secondaryCharacter.name} is taller than ${this.name}`);
+    }
+  }
   // Karaktär 2’s hårfärg. Om det är samma som Karaktär 1, skriv ut detta också.
-  compareHairColor(secondaryCharacter) {}
+  compareHairColor(secondaryCharacter, textbox) {
+    textbox.innerText = "";
+    console.log(secondaryCharacter.hair_color);
+    if (secondaryCharacter.hair_color == this.hair_color) {
+      console.log("We have the same hair color");
+    }
+  }
   // Karaktär 2’s kön. Om det är samma som Karaktär 1, skriv ut detta också.
-  compareGender(secondaryCharacter) {}
+  compareGender(secondaryCharacter, textbox) {
+    textbox.innerText = "";
+    console.log(secondaryCharacter.gender);
+    if (secondaryCharacter.gender == this.gender) {
+      console.log("We have the same gender");
+    }
+  }
   // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
 }
 
@@ -66,7 +88,7 @@ const getCharacter = async (characterId) => {
     response.data.height,
     response.data.mass,
     response.data.hair_color,
-    "todo"
+    `./images/${characterId}.jpeg`
   );
 };
 
@@ -83,13 +105,18 @@ const renderCharacter = (
   secondaryCharacter,
   primaryCharacterDiv
 ) => {
-  const p = document.createElement("p");
-  p.innerText = primaryCharacter.name;
+  const characterParagraph = document.createElement("p");
+  characterParagraph.innerText = primaryCharacter.name;
+
+  const characterImage = document.createElement("img");
+  characterImage.src = primaryCharacter.imgUrl;
+
+  const textbox = document.createElement("p");
 
   const compareWeightBtn = document.createElement("button");
   compareWeightBtn.innerText = "What does the other one weigh?";
   compareWeightBtn.addEventListener("click", () => {
-    primaryCharacter.compareWeight(secondaryCharacter);
+    primaryCharacter.compareWeight(secondaryCharacter, textbox);
   });
 
   const compareHeightBtn = document.createElement("button");
@@ -111,10 +138,12 @@ const renderCharacter = (
   });
 
   primaryCharacterDiv.append(
-    p,
+    characterParagraph,
+    characterImage,
     compareWeightBtn,
     compareHeightBtn,
     compareHairColorBtn,
-    compareGenderBtn
+    compareGenderBtn,
+    textbox
   );
 };
