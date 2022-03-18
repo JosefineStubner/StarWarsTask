@@ -19,18 +19,10 @@ class Character {
   compareWeight(secondaryCharacter) {
     console.log(this.name + " compare weight with " + secondaryCharacter.name);
 
-    const weightDiv = document.getElementById("weightDiv")
-    const weightParagraph = document.createElement("p");
-
     if (this.mass > secondaryCharacter.mass) {
       console.log(this.name + " is heavier than " + secondaryCharacter.name);
-      weightParagraph.innerText = "I weigh more than " + secondaryCharacter.name;
-      weightDiv.appendChild(weightParagraph);
-    } 
-    else {
+    } else {
       console.log(secondaryCharacter.name + " is heavier than " + this.name);
-      weightParagraph.innerText = secondaryCharacter.name + " weighs more than me."
-      weightDiv.appendChild(weightParagraph);
     }
   }
   // Vad Karaktär 2s längd är. - Skriv även ut om Karaktär 2 är längre/kortare än hen, samt skillnaden i längd.
@@ -42,16 +34,21 @@ class Character {
   // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
 }
 
-
 let characterOne;
 let characterTwo;
+
+const firstCharacterValue = document.getElementById("firstCharacter");
+const secondCharacterValue = document.getElementById("secondCharacter");
+
+const characterOneDiv = document.getElementById("renderCharacterOne");
+const characterTwoDiv = document.getElementById("renderCharacterTwo");
+
+const characterOneAnswerBox = document.createElement("p");
+const characterTwoAnswerBox = document.createElement("p");
 
 const chooseCharactersBtn = document.getElementById("chooseCharactersBtn");
 
 chooseCharactersBtn.addEventListener("click", async () => {
-  const firstCharacterValue = document.getElementById("firstCharacter");
-  const secondCharacterValue = document.getElementById("secondCharacter");
-
   characterOne = await getCharacter(firstCharacterValue.value);
   characterTwo = await getCharacter(secondCharacterValue.value);
 
@@ -74,9 +71,6 @@ const getCharacter = async (characterId) => {
 };
 
 const renderCharacters = (characterOne, characterTwo) => {
-  const characterOneDiv = document.getElementById("renderCharacterOne");
-  const characterTwoDiv = document.getElementById("renderCharacterTwo");
-
   characterOneDiv.innerHTML = "";
   renderCharacter(characterOne, characterTwo, characterOneDiv);
 
@@ -102,19 +96,25 @@ const renderCharacter = (
   compareHeightBtn.innerText = "How tall is the other one?";
   compareHeightBtn.addEventListener("click", () => {
     primaryCharacter.compareHeight(secondaryCharacter);
-  })
+  });
 
   const compareHairColorBtn = document.createElement("button");
   compareHairColorBtn.innerText = "What's their hair color?";
   compareHairColorBtn.addEventListener("click", () => {
     primaryCharacter.compareHairColor(secondaryCharacter);
-  })
+  });
 
   const compareGenderBtn = document.createElement("button");
-  compareGenderBtn.innerText = "What's their gender?"
+  compareGenderBtn.innerText = "What's their gender?";
   compareGenderBtn.addEventListener("click", () => {
     primaryCharacter.compareGender(secondaryCharacter);
-  })
+  });
 
-  primaryCharacterDiv.append(p, compareWeightBtn, compareHeightBtn, compareHairColorBtn, compareGenderBtn);
+  primaryCharacterDiv.append(
+    p,
+    compareWeightBtn,
+    compareHeightBtn,
+    compareHairColorBtn,
+    compareGenderBtn
+  );
 };
