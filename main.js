@@ -12,37 +12,59 @@ class Character {
     this.imgUrl = imgUrl;
   }
 
-  //Klassen ska även innehålla metoder för att jämföra karaktärens egna egenskaper med en annan karaktär.
   //methods
 
   // Vad Karaktär 2:s vikt är - Skriv även ut om Karaktär 2 väger mer/mindre än hen, samt skillnaden i vikt.
   compareWeight(secondaryCharacter, textbox) {
     textbox.innerText = "";
     if (this.mass > secondaryCharacter.mass) {
-      console.log(this.name + " is heavier than " + secondaryCharacter.name);
-      console.log(this.mass - secondaryCharacter.mass);
-      textbox.innerText = "poop";
+      textbox.innerText = `${secondaryCharacter.name} weighs ${
+        secondaryCharacter.mass
+      }kg's. I am ${this.mass - secondaryCharacter.mass}kg's heavier than ${
+        secondaryCharacter.name
+      }.`;
     } else {
-      console.log(secondaryCharacter.name + " is heavier than " + this.name);
-      console.log(secondaryCharacter.mass - this.mass);
-      textbox.innerText = "not poop";
+      textbox.innerText = `${secondaryCharacter.name} weighs ${
+        secondaryCharacter.mass
+      }kg's. I am ${secondaryCharacter.mass - this.mass}kg's lighter than ${
+        secondaryCharacter.name
+      }.`;
     }
   }
   // Vad Karaktär 2s längd är. - Skriv även ut om Karaktär 2 är längre/kortare än hen, samt skillnaden i längd.
   compareHeight(secondaryCharacter, textbox) {
     textbox.innerText = "";
-    if (this.height > secondaryCharacter.mass) {
-      console.log(`${this.name} is taller than ${secondaryCharacter.name}.`);
+    if (this.height > secondaryCharacter.height) {
+      textbox.innerText = `${secondaryCharacter.name} is ${
+        secondaryCharacter.height
+      }cm tall. I am ${this.height - secondaryCharacter.height}cm taller than ${
+        secondaryCharacter.name
+      }.`;
     } else {
-      console.log(`${secondaryCharacter.name} is taller than ${this.name}`);
+      textbox.innerText = `${secondaryCharacter.name} is ${
+        secondaryCharacter.height
+      }cm tall. I am ${
+        secondaryCharacter.height - this.height
+      }cm shorter than ${secondaryCharacter.name}.`;
     }
   }
   // Karaktär 2’s hårfärg. Om det är samma som Karaktär 1, skriv ut detta också.
   compareHairColor(secondaryCharacter, textbox) {
     textbox.innerText = "";
-    console.log(secondaryCharacter.hair_color);
-    if (secondaryCharacter.hair_color == this.hair_color) {
-      console.log("We have the same hair color");
+    if (
+      (secondaryCharacter.hair_color == this.hair_color &&
+        secondaryCharacter.hair_color == "none") ||
+      secondaryCharacter.hair_color == "n/a" ||
+      this.hair_color == "none" ||
+      this.hair_color == "n/a"
+    ) {
+      textbox.innerText = `${secondaryCharacter.name} doesn't have any hair, and neither do I! What are the odds?`;
+    } else if (secondaryCharacter.hair_color == this.hair_color) {
+      textbox.innerText = `${secondaryCharacter.name}'s hair color is ${secondaryCharacter.hair_color}. We have the same hair color!`;
+    } else if (secondaryCharacter.hair_color == "none") {
+      textbox.innerText = `${secondaryCharacter.name} doesn't have any hair. How strange!`;
+    } else {
+      textbox.innerText = `${secondaryCharacter.name}'s hair color is ${secondaryCharacter.hair_color}.`;
     }
   }
   // Karaktär 2’s kön. Om det är samma som Karaktär 1, skriv ut detta också.
@@ -122,24 +144,24 @@ const renderCharacter = (
   const compareHeightBtn = document.createElement("button");
   compareHeightBtn.innerText = "How tall is the other one?";
   compareHeightBtn.addEventListener("click", () => {
-    primaryCharacter.compareHeight(secondaryCharacter);
+    primaryCharacter.compareHeight(secondaryCharacter, textbox);
   });
 
   const compareHairColorBtn = document.createElement("button");
   compareHairColorBtn.innerText = "What's their hair color?";
   compareHairColorBtn.addEventListener("click", () => {
-    primaryCharacter.compareHairColor(secondaryCharacter);
+    primaryCharacter.compareHairColor(secondaryCharacter, textbox);
   });
 
   const compareGenderBtn = document.createElement("button");
   compareGenderBtn.innerText = "What's their gender?";
   compareGenderBtn.addEventListener("click", () => {
-    primaryCharacter.compareGender(secondaryCharacter);
+    primaryCharacter.compareGender(secondaryCharacter, textbox);
   });
 
   primaryCharacterDiv.append(
     characterParagraph,
-    characterImage,
+    // characterImage,
     compareWeightBtn,
     compareHeightBtn,
     compareHairColorBtn,
