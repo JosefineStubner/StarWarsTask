@@ -73,6 +73,11 @@ class Character {
     console.log(secondaryCharacter.gender);
     if (secondaryCharacter.gender == this.gender) {
       console.log("We have the same gender");
+      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}, we have the same gender!`
+    } else if (secondaryCharacter.gender == "n/a") {
+      textbox.innerText = `${secondaryCharacter.name} is a robot! They do not conform to our puny ideas of gender, no indeed!`
+    } else {
+      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}. Intriguing...`
     }
   }
   // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
@@ -161,7 +166,7 @@ const renderCharacter = (
 
   primaryCharacterDiv.append(
     characterParagraph,
-    // characterImage,
+    characterImage,
     compareWeightBtn,
     compareHeightBtn,
     compareHairColorBtn,
