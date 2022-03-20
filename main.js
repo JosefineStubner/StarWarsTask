@@ -1,6 +1,3 @@
-// VG - Skapa en klass som du döper till Character med egenskaperna för
-// name, gender, height, mass, hairColor & pictureUrl.
-
 class Character {
   //constructor
   constructor(name, gender, height, mass, hair_color, imgUrl) {
