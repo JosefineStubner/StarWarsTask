@@ -1,4 +1,11 @@
+
 img {
   display: block;
-  size: 0.25vh;
+  max-width: 25%;
+  max-height: 25%;
+}
+
+button {
+  padding: 0.25rem;
+  margin: 00.25rem;
 }

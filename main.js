@@ -70,14 +70,12 @@ class Character {
   // Karaktär 2’s kön. Om det är samma som Karaktär 1, skriv ut detta också.
   compareGender(secondaryCharacter, textbox) {
     textbox.innerText = "";
-    console.log(secondaryCharacter.gender);
     if (secondaryCharacter.gender == this.gender) {
-      console.log("We have the same gender");
-      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}, we have the same gender!`
+      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}, we have the same gender!`;
     } else if (secondaryCharacter.gender == "n/a") {
-      textbox.innerText = `${secondaryCharacter.name} is a robot! They do not conform to our puny ideas of gender, no indeed!`
+      textbox.innerText = `${secondaryCharacter.name} is a robot! They do not conform to our puny ideas of gender, no indeed!`;
     } else {
-      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}. Intriguing...`
+      textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}. Intriguing...`;
     }
   }
   // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
@@ -100,8 +98,11 @@ const chooseCharactersBtn = document.getElementById("chooseCharactersBtn");
 chooseCharactersBtn.addEventListener("click", async () => {
   characterOne = await getCharacter(firstCharacterValue.value);
   characterTwo = await getCharacter(secondCharacterValue.value);
-
-  renderCharacters(characterOne, characterTwo);
+  if (firstCharacterValue.value == secondCharacterValue.value) {
+    alert("Please choose two different characters to compare!");
+  } else {
+    renderCharacters(characterOne, characterTwo);
+  }
 });
 
 const getCharacter = async (characterId) => {
