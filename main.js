@@ -130,8 +130,8 @@ const renderCharacter = (
   secondaryCharacter,
   primaryCharacterDiv
 ) => {
-  const characterParagraph = document.createElement("p");
-  characterParagraph.innerText = primaryCharacter.name;
+  const characterHeading = document.createElement("h3");
+  characterHeading.innerText = primaryCharacter.name;
 
   const characterImage = document.createElement("img");
   characterImage.src = primaryCharacter.imgUrl;
@@ -163,7 +163,7 @@ const renderCharacter = (
   });
 
   primaryCharacterDiv.append(
-    characterParagraph,
+    characterHeading,
     characterImage,
     compareWeightBtn,
     compareHeightBtn,

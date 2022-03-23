@@ -1,33 +1,35 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: black;
   color: white;
-
+  margin-left: 2rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
-  color: #FFE81F;
+  color: #ffe81f;
 }
 
-#chooseCharacterOne, #chooseCharacterTwo {
+#chooseCharactersBtn {
+  align-self: flex-start;
+}
+
+#chooseCharacterOne,
+#chooseCharacterTwo {
   margin: 0.25rem;
   padding: 0.15rem;
 }
 
-#renderCharacterOne, #renderCharacterTwo {
-  justify-content: center;
-}
-
 p {
-  font-weight: bold;
+  height: 3rem;
+  width: 20rem;
+  padding: 1rem;
+  background-color: white;
+  color: black;
 }
 
 img {
-  align-self: center;
   display: block;
   max-width: 25%;
   max-height: 25%;
@@ -37,5 +39,5 @@ button {
   background: white;
   color: black;
   padding: 0.25rem;
-  margin: 0.30rem;
+  margin: 0.3rem;
 }
