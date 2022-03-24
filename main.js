@@ -11,7 +11,7 @@ class Character {
 
   //methods
 
-  // Vad Karaktär 2:s vikt är - Skriv även ut om Karaktär 2 väger mer/mindre än hen, samt skillnaden i vikt.
+  // method for weight and difference in weight between characters.
   compareWeight(secondaryCharacter, textbox) {
     textbox.innerText = "";
     if (this.mass > secondaryCharacter.mass) {
@@ -28,7 +28,8 @@ class Character {
       }.`;
     }
   }
-  // Vad Karaktär 2s längd är. - Skriv även ut om Karaktär 2 är längre/kortare än hen, samt skillnaden i längd.
+
+  // method for height and difference in height between characters.
   compareHeight(secondaryCharacter, textbox) {
     textbox.innerText = "";
     if (this.height > secondaryCharacter.height) {
@@ -45,26 +46,31 @@ class Character {
       }cm shorter than ${secondaryCharacter.name}.`;
     }
   }
-  // Karaktär 2’s hårfärg. Om det är samma som Karaktär 1, skriv ut detta också.
+
+  // method for hair color.
   compareHairColor(secondaryCharacter, textbox) {
     textbox.innerText = "";
     if (
-      (secondaryCharacter.hair_color == this.hair_color &&
-        secondaryCharacter.hair_color == "none") ||
+      secondaryCharacter.hair_color == this.hair_color &&
+        (secondaryCharacter.hair_color == "none" ||
       secondaryCharacter.hair_color == "n/a" ||
       this.hair_color == "none" ||
-      this.hair_color == "n/a"
+      this.hair_color == "n/a")
     ) {
       textbox.innerText = `${secondaryCharacter.name} doesn't have any hair, and neither do I! What are the odds?`;
     } else if (secondaryCharacter.hair_color == this.hair_color) {
       textbox.innerText = `${secondaryCharacter.name}'s hair color is ${secondaryCharacter.hair_color}. We have the same hair color!`;
-    } else if (secondaryCharacter.hair_color == "none") {
+    } else if (
+      secondaryCharacter.hair_color == "none" ||
+      secondaryCharacter.hair_color == "n/a"
+    ) {
       textbox.innerText = `${secondaryCharacter.name} doesn't have any hair. How strange!`;
     } else {
       textbox.innerText = `${secondaryCharacter.name}'s hair color is ${secondaryCharacter.hair_color}.`;
     }
   }
-  // Karaktär 2’s kön. Om det är samma som Karaktär 1, skriv ut detta också.
+
+  // method for gender.
   compareGender(secondaryCharacter, textbox) {
     textbox.innerText = "";
     if (secondaryCharacter.gender == this.gender) {
@@ -75,7 +81,6 @@ class Character {
       textbox.innerText = `${secondaryCharacter.name} is a ${secondaryCharacter.gender}. Intriguing...`;
     }
   }
-  // Glöm ej att man ska kunna ställa samma frågor till Karaktär 2 också.
 }
 
 let characterOne;
